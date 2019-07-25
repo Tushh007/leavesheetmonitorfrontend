@@ -1,0 +1,26 @@
+.user-registration-full-width {
+    width: 150%;
+}
+
+.user-registration {
+    width: 50%;
+    height: 80vh;
+}
+
+mat-card-header {
+    justify-content: center;
+    color: rgb(53, 84, 112);
+    font-weight: bolder;
+}
+
+button {
+  color: white;
+  background-color: rgb(53, 84, 112);
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  justify-content: center;
+  font-size: 1rem;
+  margin: 2rem;
+}

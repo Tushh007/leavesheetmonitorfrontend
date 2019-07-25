@@ -1,0 +1,42 @@
+mat-card {
+    height: auto;
+    width: 50%;
+    justify-content: center;
+    text-align: center;
+    background-color:#FAFAFA;
+}
+
+mat-card-header {
+    justify-content: center;
+    color: rgb(53, 84, 112);
+    font-weight: bolder;
+}
+
+
+button {
+  color: white;
+  background-color: rgb(53, 84, 112);
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+
+.center{
+  width: 75%;
+  margin: 10px auto;
+}
+
+.support{
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+

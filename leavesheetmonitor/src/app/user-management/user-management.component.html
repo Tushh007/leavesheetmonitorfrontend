@@ -1,0 +1,237 @@
+<div>
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+</mat-form-field>
+<button mat-raised-button (click)="openDialog()">Add User</button>
+</div>
+
+<table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+
+<ng-container matColumnDef="PSA ID">
+  <th mat-header-cell *matHeaderCellDef> PSA ID </th>
+  <td mat-cell *matCellDef="let user"> {{user.profile.psa_id}} </td>
+</ng-container>
+
+<ng-container matColumnDef="Name">
+  <th mat-header-cell *matHeaderCellDef>Name </th>
+  <td mat-cell *matCellDef="let user"> {{user.first_name}} {{user.last_name}} </td>
+</ng-container>
+
+<ng-container matColumnDef="Email">
+  <th mat-header-cell *matHeaderCellDef> Email </th>
+  <td mat-cell *matCellDef="let user"> {{user.email}} </td>
+</ng-container>
+
+<ng-container matColumnDef="LAN ID">
+  <th mat-header-cell *matHeaderCellDef> LAN ID </th>
+  <td mat-cell *matCellDef="let user"> {{user.profile.lan_id}} </td>
+</ng-container>
+
+<ng-container matColumnDef="SOW">
+  <th mat-header-cell *matHeaderCellDef> SOW </th>
+  <td mat-cell *matCellDef="let user"> {{user.profile.sow_no}} </td>
+</ng-container>
+
+<ng-container matColumnDef="Role">
+  <th mat-header-cell *matHeaderCellDef> Role </th>
+  <td mat-cell *matCellDef="let user"> {{user.profile.role}} </td>
+</ng-container>
+
+<ng-container matColumnDef="Manager PSA ID">
+  <th mat-header-cell *matHeaderCellDef> Manager PSA ID </th>
+  <td mat-cell *matCellDef="let user"> {{user.profile.manager_psa_id}} </td>
+</ng-container>
+
+<ng-container matColumnDef="Manager Name">
+  <th mat-header-cell *matHeaderCellDef> Manager Name </th>
+  <td mat-cell *matCellDef="let user"> {{user.profile.manager_name}} </td>
+</ng-container>
+
+<ng-container matColumnDef="Manager Email">
+  <th mat-header-cell *matHeaderCellDef> Manager Email </th>
+  <td mat-cell *matCellDef="let user"> {{user.profile.manager_email}} </td>
+</ng-container>
+
+<!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+<ng-container matColumnDef="expandedDetail">
+  <td mat-cell *matCellDef="let user" [attr.colspan]="displayedColumns.length">
+    <div class="user-detail" [@detailExpand]="user == expandedElement ? 'expanded' : 'collapsed'">
+      <div class="user-description">
+        <mat-card class="user-registration-card"  fxLayoutAlign="center center" fxLayout="column">
+          <mat-card-header>
+            <mat-card-title>Details</mat-card-title>
+          </mat-card-header>
+        
+          <mat-card-content>
+            <form [formGroup]="userRegistrationForm" (ngSubmit)="onSubmit(userRegistrationForm.value)">
+              <table class="user-registration-full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field class="url">
+                      <input matInput type="text" value={{user.url}} formControlName="url" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.url.errors }"/>
+                      <div *ngIf="submitted && f.url.errors" class="invalid-feedback">
+                        <div *ngIf="f.url.errors.required">URL is required</div>
+                      </div>
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="email">Email</label>
+                    <mat-form-field class="user-registration-full-width">
+                      <input matInput type="text" value={{user.email}} formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                      </div>
+                    </mat-form-field>
+                  </td>
+                </tr>
+        
+                <tr>
+                  <td>
+                    <label for="first_name">First Name</label>
+                    <mat-form-field class="user-registration-full-width">
+                      <input matInput type="text" value={{user.first_name}} formControlName="first_name" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" />
+                      <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                        <div *ngIf="f.first_name.errors.required">first name is required</div>
+                      </div>
+                    </mat-form-field>
+                  </td>
+                </tr>
+        
+                <tr>
+                  <td>
+                    <label for="last_name">Last Name</label>
+                    <mat-form-field class="user-registration-full-width">
+                      <input matInput type="text" value={{user.last_name}} formControlName="last_name" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
+                      <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                        <div *ngIf="f.last_name.errors.required">Last name is required</div>
+                      </div>
+                    </mat-form-field>
+                  </td>
+                </tr>
+        
+                <tr>
+                  <td>
+                    <label for="password">Password</label>
+                    <mat-form-field class="user-registration-full-width">
+                      <input matInput type="password" placeholder="password" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                      </div>
+                    </mat-form-field>
+                  </td>
+                </tr>
+        
+                <tr>
+                  <td>
+                    <label for="psa_id">PSA ID</label>
+                    <mat-form-field class="user-registration-full-width">
+                      <input matInput type="text" value={{user.profile.psa_id}} formControlName="psa_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.psa_id.errors }" />
+                      <div *ngIf="submitted && f.psa_id.errors" class="invalid-feedback">
+                        <div *ngIf="f.psa_id.errors.required">PSA ID is required</div>
+                      </div>
+                    </mat-form-field>
+                  </td>
+                </tr>
+        
+                <tr>
+                  <td>
+                    <label for="lan_id">LAN ID</label>
+                    <mat-form-field class="user-registration-full-width">
+                      <input matInput type="text" value={{user.profile.lan_id}} formControlName="lan_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lan_id.errors }" />
+                      <div *ngIf="submitted && f.lan_id.errors" class="invalid-feedback">
+                        <div *ngIf="f.lan_id.errors.required">LAN ID is required</div>
+                      </div>
+                    </mat-form-field>
+                  </td>
+                </tr>
+        
+                <tr>
+                  <td>
+                    <label for="sow_no">SOW NO</label>
+                    <mat-form-field class="user-registration-full-width">
+                      <input matInput type="text" value={{user.profile.sow_no}} formControlName="sow_no" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.sow_no.errors }" />
+                      <div *ngIf="submitted && f.sow_no.errors" class="invalid-feedback">
+                        <div *ngIf="f.sow_no.errors.required">SOW Number is required</div>
+                      </div>
+                    </mat-form-field>
+                  </td>
+                </tr>
+        
+                <tr>
+                  <td>
+                    <label for="role">Role</label>
+                    <mat-form-field class="user-registration-full-width">
+                      <input matInput type="text" value={{user.profile.role}} formControlName="role" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.role.errors }" />
+                      <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
+                        <div *ngIf="f.role.errors.required">Role is required</div>
+                      </div>
+                    </mat-form-field>
+                  </td>
+                </tr>
+        
+                <tr>
+                  <td>
+                    <label for="manager_psa_id">Manager PSA ID</label>
+                    <mat-form-field class="user-registration-full-width">
+                      <input matInput type="text" value={{user.profile.manager_psa_id}} formControlName="manager_psa_id" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.manager_psa_id.errors }" />
+                      <div *ngIf="submitted && f.manager_psa_id.errors" class="invalid-feedback">
+                        <div *ngIf="f.manager_psa_id.errors.required">Manager PSA ID is required</div>
+                      </div>
+                    </mat-form-field>
+                  </td>
+                </tr>
+        
+                <tr>
+                  <td>
+                    <label for="manager_name">Manager Name</label>
+                    <mat-form-field class="user-registration-full-width">
+                      <input matInput type="text" value={{user.profile.manager_name}} formControlName="manager_name" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.manager_name.errors }" />
+                      <div *ngIf="submitted && f.manager_name.errors" class="invalid-feedback">
+                        <div *ngIf="f.manager_name.errors.required">Manager Name is required</div>
+                      </div>
+                    </mat-form-field>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="manager_email">Manager Email</label>
+                    <mat-form-field class="user-registration-full-width">
+                      <input matInput type="text" value={{user.profile.manager_email}} formControlName="manager_email" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.manager_email.errors }" />
+                      <div *ngIf="submitted && f.manager_email.errors" class="invalid-feedback">
+                        <div *ngIf="f.manager_email.errors.required">Manager Email is required</div>
+                      </div>
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+              <div class="form-group">
+                <button mat-raised-button [disabled]="loading" class="btn btn-primary">Update</button>
+                <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+              </div>
+              <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+            <div>
+              <button mat-raised-button>Delete</button>
+            </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let user; columns: displayedColumns;" class="user-row"
+  [class.expanded-row]="expandedElement === user" (click)="expandedElement = expandedElement === user ? null : user">
+</tr>
+<tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+</table>

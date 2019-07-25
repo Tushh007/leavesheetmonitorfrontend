@@ -1,0 +1,40 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink = 'login' routerLinkActive="active" *ngIf="!currentUser">Home</a>
+      <a mat-list-item routerLink='#' *ngIf="currentUser">Reports</a>
+      <!-- <a mat-list-item href="http://127.0.0.1:8000/admin/login/?next=/admin/" *ngIf="!currentUser">Admin</a> -->
+      <a mat-list-item routerLink = 'support' routerLinkActive="active" *ngIf="!currentUser">Support</a>
+      <a mat-list-item routerLink='#' (click)="logout()" *ngIf="currentUser">Logout</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span class='logo'><img src="../../assets/logo.gif" alt="logo" height="30" width="30">LeavesheetMonitor</span>
+      <span class="spacer"></span>
+      <span id="name" *ngIf="currentUser" style="color: rgb(53, 84, 112);">Welcome, {{currentUser.user.first_name}}</span>
+      <a routerLink = 'login' routerLinkActive="active" *ngIf="!currentUser">Home</a>
+      <!-- <a routerLink='' routerLinkActive="active" *ngIf="currentUser">Home</a> -->
+      <!-- <a routerLink = '#' *ngIf="currentUser">Reports</a> -->
+      <!-- <a href="http://127.0.0.1:8000/admin/login/?next=/admin/" target="_blank" *ngIf="!currentUser">Admin</a> -->
+      <a routerLink = 'support' routerLinkActive="active" *ngIf="!currentUser">Support</a>
+      <a routerLink = 'login' (click)="logout()" *ngIf="currentUser">Logout</a>
+
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+    <!-- <app-footer></app-footer> -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

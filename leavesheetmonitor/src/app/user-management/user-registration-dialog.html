@@ -1,0 +1,139 @@
+<div class="user-registration">
+    <mat-card class="user-registration-card" style="box-shadow: none !important;" fxLayoutAlign="center center" fxLayout="column">
+        <mat-card-header>
+            <mat-card-title>User Registration</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="userRegistrationForm" (ngSubmit)="onSubmit(userRegistrationForm.value)">
+                <table class="user-registration-full-width" cellspacing="0">
+                    <tr>
+                        <td>
+                            <mat-form-field class="user-registration-full-width">
+                                <input matInput type="text" placeholder="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.email.errors.required">Email is required</div>
+                                </div>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <mat-form-field class="user-registration-full-width">
+                                <input matInput type="text" placeholder="first name" formControlName="first_name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" />
+                                <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.first_name.errors.required">first name is required</div>
+                                </div>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <mat-form-field class="user-registration-full-width">
+                                <input matInput type="text" placeholder="last name" formControlName="last_name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
+                                <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.last_name.errors.required">Last name is required</div>
+                                </div>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <mat-form-field class="user-registration-full-width">
+                                <input matInput type="password" placeholder="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                </div>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <mat-form-field class="user-registration-full-width">
+                                <input matInput type="text" placeholder="PSA ID" formControlName="psa_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.psa_id.errors }" />
+                                <div *ngIf="submitted && f.psa_id.errors" class="invalid-feedback">
+                                    <div *ngIf="f.psa_id.errors.required">PSA ID is required</div>
+                                </div>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <mat-form-field class="user-registration-full-width">
+                                <input matInput type="text" placeholder="LAN ID" formControlName="lan_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lan_id.errors }" />
+                                <div *ngIf="submitted && f.lan_id.errors" class="invalid-feedback">
+                                    <div *ngIf="f.lan_id.errors.required">LAN ID is required</div>
+                                </div>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <mat-form-field class="user-registration-full-width">
+                                <input matInput type="text" placeholder="SOW Number" formControlName="sow_no" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.sow_no.errors }" />
+                                <div *ngIf="submitted && f.sow_no.errors" class="invalid-feedback">
+                                    <div *ngIf="f.sow_no.errors.required">SOW Number is required</div>
+                                </div>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <mat-form-field class="user-registration-full-width">
+                                <input matInput type="text" placeholder="Role" formControlName="role" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.role.errors }" />
+                                <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
+                                    <div *ngIf="f.role.errors.required">Role is required</div>
+                                </div>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <mat-form-field class="user-registration-full-width">
+                                <input matInput type="text" placeholder="manager psa id" formControlName="manager_psa_id" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.manager_psa_id.errors }" />
+                                <div *ngIf="submitted && f.manager_psa_id.errors" class="invalid-feedback">
+                                    <div *ngIf="f.manager_psa_id.errors.required">Manager PSA ID is required</div>
+                                </div>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <mat-form-field class="user-registration-full-width">
+                                <input matInput type="text" placeholder="manager name" formControlName="manager_name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.manager_name.errors }" />
+                                <div *ngIf="submitted && f.manager_name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.manager_name.errors.required">Manager Name is required</div>
+                                </div>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field class="user-registration-full-width">
+                                <input matInput type="text" placeholder="manager email" formControlName="manager_email" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.manager_email.errors }" />
+                                <div *ngIf="submitted && f.manager_email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.manager_email.errors.required">Manager Email is required</div>
+                                </div>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+                <div class="form-group">
+                    <button mat-raised-button [disabled]="loading" class="btn btn-primary">submit</button>
+                    <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                </div>
+                <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

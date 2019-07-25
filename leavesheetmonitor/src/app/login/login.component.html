@@ -1,0 +1,83 @@
+<div class="login-page">
+    <div class="banner">
+        <div class="container">
+            <h1 class="logo-font">Leave Sheet Monitor
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' type='text/css'>
+            </h1>
+            <!-- <p><i>Submission starts on:</i></p> -->
+            <p>{{ mydate | date:'EEEE, MMMM d, y, h:mm:ss a zzzz'}}</p>
+        </div>
+    </div>
+<!-- <marquee direction="left" style="margin: none">
+    <h4 style="color: red">Timesheet Submission starts on Thursday, 07/02/2019</h4>
+</marquee> -->
+    <div class="cardList" fxLayout="row" fxLayoutGap="32px" fxLayout.xs="column">
+    
+        <mat-card style="box-shadow: none !important;">
+            <mat-card-header>
+                <mat-card-title>Fill your leave sheets on time!</mat-card-title>
+            </mat-card-header>
+    
+            <mat-card-content style="justify-content: center;">
+                Importance of leave sheets for employees. For employees, maintaining regular leave sheets is a discipline
+                that's built with
+                regular practice. ... Staff leave sheets as a business tool are also great for measuring productivity
+                and to ensure
+                accurate payroll.
+            </mat-card-content>
+        </mat-card>
+    
+        <mat-card class="login-card">
+                <mat-card-header>
+                    <mat-card-title>Login</mat-card-title>
+                </mat-card-header>
+    
+                <mat-card-content>
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <table class="login-full-width" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <mat-form-field class="login-full-width">
+                                        <input matInput type="text" placeholder="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                            <div *ngIf="f.email.errors.required">Email is required</div>
+                                        </div>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <mat-form-field class="login-full-width">
+                                        <input matInput type="password" placeholder="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                            <div *ngIf="f.password.errors.required">Password is required</div>
+                                        </div>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form-group">
+                            <button mat-raised-button [disabled]="loading" class="btn btn-primary">Login</button>
+                            <img *ngIf="loading" class="pl-2" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        </div>
+                        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                    </form>
+                </mat-card-content>
+                <p style="font-size: 0.8rem; color: rgb(53, 84, 112);">New Users - Please raise a ticket using support to get the credentials!</p>  
+            </mat-card>
+    
+        <mat-card style="box-shadow: none !important;">
+            <mat-card-header>
+                <mat-card-title>Filling Leave sheets are important!</mat-card-title>
+            </mat-card-header>
+            <mat-card-content style="justify-content: center;">
+                Leave sheets allows an organization to properly allocate time and resources, measure employees performance and are helpful in managing
+                payroll. And above all, they help to measure planned project against the actual project in progress including the
+                budget. To make this process smooth and flawless, your managers are responsible for approving leave sheets!
+            </mat-card-content>
+        </mat-card>
+    </div>
+    </div>
+ 

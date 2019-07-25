@@ -1,0 +1,14 @@
+﻿<!-- <h1>Home</h1>
+<p>Hi {{id}}, {{first_name}} You're logged in as  {{role}} Congratulations!</p> -->
+
+<div *ngIf="administrator">
+    <app-administrator></app-administrator>
+</div>
+
+<div *ngIf="manager">
+    <app-manager></app-manager>
+</div>
+
+<div *ngIf="member">
+    <app-member></app-member>
+</div>
